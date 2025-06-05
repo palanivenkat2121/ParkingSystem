@@ -1,4 +1,6 @@
 import java.util.*;
+import  databasecom.parking.db.DBHelper;
+
 class Vehicle {
     private String vehicleNumber;
     private String size;
@@ -12,7 +14,7 @@ class Vehicle {
     public String getSize() {
         return size;
     }
-    @Override
+    
     public String toString() {
         return "VehicleNumber: " + vehicleNumber + ", Size: " + size;
     }
@@ -67,6 +69,7 @@ class ParkingLot {
         if (ticketnumber != -1) {
             occupiedSlots.put(ticketnumber, vehicle);
             billMap.put(ticketnumber, bill);
+
         } else {
             System.out.println("No slot available for this type.");
         }
@@ -84,6 +87,8 @@ class ParkingLot {
         if (occupiedSlots.containsKey(ticketnumber)) {
             vehicle = occupiedSlots.remove(ticketnumber);
             billMap.remove(ticketnumber);
+
+
             switch (vehicle.getSize()) {
                 case "2W": available2WheelSlots++; break;
                 case "4W": available4WheelSlots++; break;
